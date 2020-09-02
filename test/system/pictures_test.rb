@@ -14,6 +14,7 @@ class PicturesTest < ApplicationSystemTestCase
     visit pictures_url
     click_on "New Picture"
 
+    fill_in "Content", with: @picture.content
     fill_in "Image", with: @picture.image
     click_on "Create Picture"
 
@@ -25,6 +26,7 @@ class PicturesTest < ApplicationSystemTestCase
     visit pictures_url
     click_on "Edit", match: :first
 
+    fill_in "Content", with: @picture.content
     fill_in "Image", with: @picture.image
     click_on "Update Picture"
 
