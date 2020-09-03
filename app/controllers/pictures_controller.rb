@@ -13,13 +13,13 @@ class PicturesController < ApplicationController
     end
   end
   def confirm
-    @picture = Picture.new(picture_params)
+    @picture = current_user.pictures.build(picture_params)
     render :new if @picture.invalid?
   end
   def edit
   end
   def create
-    @picture = Picture.new(picture_params)
+    @picture = current_user.pictures.build(picture_params)
     if @picture.save
       redirect_to pictures_path
     else
@@ -44,7 +44,7 @@ class PicturesController < ApplicationController
       format.json { head :no_content }
     end
   end
-  private
+    private
     def set_picture
       @picture = Picture.find(params[:id])
     end
