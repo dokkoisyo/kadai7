@@ -2,7 +2,6 @@
   <% if picture.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
-
       <ul>
       <% picture.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,20 +9,19 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= form.label :image %>
+    <%= form.label :image %><br>
     <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
-    <%= form.file_field :image %>
-    <%= form.hidden_field :image_cache %>
+    <div class="file_select">
+      <%= form.file_field :image %>
+      <%= form.hidden_field :image_cache %>
+    </div>
   </div>
-
   <div class="field">
-    <%= form.label :content %>
+    <%= form.label :content %><br>
     <%= form.text_area :content %>
   </div>
-
   <div class="actions">
-    <%= form.submit %>
+    <button type="submit" class="btn btn-primary">投稿する</button>
   </div>
 <% end %>

@@ -1,5 +1,12 @@
 class PicturesController < ApplicationController
+  before_action :authenticate_user
+  def authenticate_user
+    unless logged_in?
+      redirect_to new_session_path
+    end
+  end
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
   def index
     @pictures = Picture.all
   end

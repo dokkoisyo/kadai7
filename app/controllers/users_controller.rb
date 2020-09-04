@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user, except: :new
+  def authenticate_user
+    unless logged_in?
+      flash[:notice] = t('notice.login_needed')
+      redirect_to new_session_path
+    end
+  end
   def show
     @user = User.find(params[:id])
   end
